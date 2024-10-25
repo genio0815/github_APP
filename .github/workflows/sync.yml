@@ -17,7 +17,7 @@ jobs:
           application_id: ${{ secrets.APPLICATION_ID }}
           application_private_key: ${{ secrets.APPLICATION_PRIVATE_KEY }}
       - name: Sync
-        uses: dabreadman/sync-upstream-repo@v1.3.0
+        uses: dchourasia/sync-upstream-repo@main
         env:
           # GITHUB_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
           UPSTREAM_URL: "https://github.com/easybuilders/easybuild-easyconfigs.git"    
@@ -25,7 +25,7 @@ jobs:
           # Optional, defaults to main
           UPSTREAM_BRANCH: "main"
           # Optional, defaults to current repo
-          DOWNSTREAM_URL: "https://github.com/jooho/sync-upstream-repo"
+          DOWNSTREAM_URL: ""
           # Optional, defaults to UPSTREAM_BRANCH
           DOWNSTREAM_BRANCH: ""
           # Optional fetch arguments
