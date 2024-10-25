@@ -8,7 +8,7 @@ on:
 jobs:
   sync:
     runs-on: ubuntu-latest
-    steps:
+    steps: 
       - name: Get Token
         id: get_workflow_token
         uses: peter-murray/workflow-application-token-action@v4.0.0
@@ -17,11 +17,11 @@ jobs:
           application_private_key: ${{ secrets.APPLICATION_PRIVATE_KEY }}
       - name: Sync
         uses: repo-sync/github-sync@v2
-      with:
-        source_repo: "https://github.com/easybuilders/easybuild-easyconfigs.git"
-        source_branch: "develop"
-        destination_branch: "develop"
-        github_token: ${{ steps.get_workflow_token.outputs.token }}
+        with:
+          source_repo: "https://github.com/easybuilders/easybuild-easyconfigs.git"
+          source_branch: "develop"
+          destination_branch: "develop"
+          github_token: ${{ steps.get_workflow_token.outputs.token }}
         #uses: dchourasia/sync-upstream-repo@main
         #env:
         #  # GITHUB_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
