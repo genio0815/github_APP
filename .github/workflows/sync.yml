@@ -17,28 +17,34 @@ jobs:
           application_id: ${{ secrets.APPLICATION_ID }}
           application_private_key: ${{ secrets.APPLICATION_PRIVATE_KEY }}
       - name: Sync
-        uses: dchourasia/sync-upstream-repo@main
-        env:
-          # GITHUB_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
-          UPSTREAM_URL: "https://github.com/easybuilders/easybuild-easyconfigs.git"    
-          WORKFLOW_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
-          # Optional, defaults to main
-          UPSTREAM_BRANCH: "main"
-          # Optional, defaults to current repo
-          DOWNSTREAM_URL: ""
-          # Optional, defaults to UPSTREAM_BRANCH
-          DOWNSTREAM_BRANCH: ""
-          # Optional fetch arguments
-          FETCH_ARGS: ""
-          # Optional merge arguments
-          MERGE_ARGS: ""
-          # Optional push arguments
-          PUSH_ARGS: ""
-          # Optional check if the downstream branch is the latest or not
-          BRANCH_PREFIX: ""
-        with: 
-          upstream_repo: ${{ env.UPSTREAM_URL }}
-          upstream_branch: ${{ env.UPSTREAM_BRANCH }}
-          downstream_branch: ${{ env.DOWNSTREAM_BRANCH }}
-          token: ${{ env.WORKFLOW_TOKEN }}
+        uses: repo-sync/github-sync@v2
+      with:
+        source_repo: "https://github.com/easybuilders/easybuild-easyconfigs.git"
+        source_branch: "develop"
+        destination_branch: "develop"
+        github_token: ${{ steps.get_workflow_token.outputs.token }}
+        #uses: dchourasia/sync-upstream-repo@main
+        #env:
+        #  # GITHUB_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
+        #  UPSTREAM_URL: "https://github.com/easybuilders/easybuild-easyconfigs.git"    
+        #  WORKFLOW_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
+        #  # Optional, defaults to main
+        #  UPSTREAM_BRANCH: "main"
+        #  # Optional, defaults to current repo
+        #  DOWNSTREAM_URL: ""
+        #  # Optional, defaults to UPSTREAM_BRANCH
+        #  DOWNSTREAM_BRANCH: ""
+        #  # Optional fetch arguments
+        #  FETCH_ARGS: ""
+        #  # Optional merge arguments
+        #  MERGE_ARGS: ""
+        #  # Optional push arguments
+        #  PUSH_ARGS: ""
+        #  # Optional check if the downstream branch is the latest or not
+        #  BRANCH_PREFIX: ""
+        # with: 
+         # upstream_repo: ${{ env.UPSTREAM_URL }}
+         # upstream_branch: ${{ env.UPSTREAM_BRANCH }}
+         # downstream_branch: ${{ env.DOWNSTREAM_BRANCH }}
+         # token: ${{ env.WORKFLOW_TOKEN }}
         
